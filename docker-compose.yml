@@ -33,14 +33,14 @@ services:
       - minha-rede
 
   chama_agua_api:
-    image: daniel101/sefa-desafio
+    image: daniel101/sefa-imposto-api
     restart: always
     depends_on:
       - mysqlsrv
     links:
       - mysqlsrv
     ports:
-      - "7084:8090"
+      - "7033:8090"
     networks:
       - minha-rede
     environment:
