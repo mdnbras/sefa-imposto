@@ -1,0 +1,53 @@
+version: '3.5'
+
+volumes:
+  mysql_data:
+    driver: local
+
+services:
+  mysqlsrv:
+    image: mysql:5.7.37
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=sefa_desafio_db
+      - MYSQL_DATABASE=sefa_desafio_db
+      - MYSQL_TCP_PORT=3307
+    ports:
+      - "3307:3307"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - minha-rede
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - mysqlsrv
+    ports:
+      - "8084:80"
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - minha-rede
+
+  chama_agua_api:
+    image: daniel101/sefa-desafio
+    restart: always
+    depends_on:
+      - mysqlsrv
+    links:
+      - mysqlsrv
+    ports:
+      - "7084:8090"
+    networks:
+      - minha-rede
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:3307/sefa_desafio_db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: chama_agua_db
+
+networks:
+  minha-rede:
+    driver: bridge
