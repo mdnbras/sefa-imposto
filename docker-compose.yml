@@ -32,7 +32,7 @@ services:
     networks:
       - minha-rede
 
-  chama_agua_api:
+  sefa_imposto_api:
     image: daniel101/sefa-imposto-api
     restart: always
     depends_on:
@@ -46,7 +46,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqlsrv:3307/sefa_desafio_db?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: chama_agua_db
+      SPRING_DATASOURCE_PASSWORD: sefa_desafio_db
 
 networks:
   minha-rede:
