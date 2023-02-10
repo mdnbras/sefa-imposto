@@ -1,10 +1,16 @@
 ## Sobre
-- O desafio foi desenvolvido com Spring Boot, JPA, Mysql e Java 17. Foi utilizado uma arquitetura baseada em DDD, com aplicação de Clean Code e Testes de Serviço. 
+- O desafio foi desenvolvido com Spring Boot, JPA, Mysql, Docker, e Java 17. Foi utilizado uma arquitetura baseada em DDD, com a aplicação de Clean Code e Testes de Serviço.
+
+## Diagrama do banco de dados
+![database_diagram](database_diagram.png)
+
 ## API
+
+- Base URL: `http://191.252.202.225:7033`
 
 ### Permitir listar os débitos de uma pessoa;
 
-- Endpoint: `GET http://localhost:8090/v1/pessoa/{idPessoa}/meus-debitos`
+- Endpoint: `GET http://191.252.202.225:7033/v1/pessoa/{idPessoa}/meus-debitos`
 - Path Variables:
 
 | Key      | Value | Description  |
@@ -45,7 +51,7 @@
 
 ### Criar um parcelamento para os débitos de uma pessoa;
 
-- Endpoint: `POST http://localhost:8090/v1/parcelamento`
+- Endpoint: `POST http://191.252.202.225:7033/v1/parcelamento`
 - Request Body (JSON):
 ```json
 {
@@ -84,7 +90,7 @@
 
 ### Listar os parcelamentos de uma pessoa;
 
-- Endpoint: `POST http://localhost:8090/v1/pessoa/{idPessoa}/meus-parcelamentos`
+- Endpoint: `GET http://191.252.202.225:7033/v1/pessoa/{idPessoa}/meus-parcelamentos`
 
 - Path Variables:
 
@@ -124,7 +130,7 @@
 
 ### Cancelar um parcelamento de uma pessoa;
 
-- Endpoint: `POST http://localhost:8090/v1/parcelamento/cancelar/{id}`
+- Endpoint: `POST http://191.252.202.225:7033/v1/parcelamento/cancelar/{id}`
 
 - Path Variables:
 
@@ -139,7 +145,7 @@
 
 ### Permitir receber o pagamento de uma parcela de um parcelamento;
 
-- Endpoint: `POST http://localhost:8090/v1/parcelamento/efetuar-pagamento`
+- Endpoint: `POST http://191.252.202.225:7033/v1/parcelamento/efetuar-pagamento`
 - Request Body (JSON):
 ```json
 {
